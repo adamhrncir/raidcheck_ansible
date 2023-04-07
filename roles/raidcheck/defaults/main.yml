@@ -1,0 +1,31 @@
+---
+raidcheck_crontab_minute: 0
+raidcheck_crontab_hour: "*"
+raidcheck_script_dest: /usr/bin/raidcheck.sh
+raidcheck_conf_dest: /etc/raidcheck.conf
+
+# enclosure ID
+raidcheck_encID: 252
+
+
+# drive error limits
+raidcheck_drive0MediaLimit: 0
+raidcheck_drive0OtherLimit: 6
+
+raidcheck_drive1MediaLimit: 0
+raidcheck_drive1OtherLimit: 6
+
+raidcheck_drive2MediaLimit: 0
+raidcheck_drive2OtherLimit: 6
+
+raidcheck_drive3MediaLimit: 0
+raidcheck_drive3OtherLimit: 6
+
+raidcheck_logDrvStateLimit: "Optimal"
+
+
+# mail
+raidcheck_recipient: "admin@example.com"
+
+# log destination
+raidcheck_logdest: "/var/log/raidcheck.log"

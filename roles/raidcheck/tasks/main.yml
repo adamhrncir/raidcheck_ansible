@@ -1,0 +1,22 @@
+- name: copy conf file to remote server
+  template:
+    src: raidcheck.conf.j2
+    dest: "{{ raidcheck_conf_dest }}"
+    mode: '0740'
+    owner: root
+    group: root
+
+- name: copy shell script to remote server
+  copy:
+    src: raidcheck.sh
+    dest: "{{ raidcheck_script_dest }}"
+    mode: '0740'
+    owner: root
+    group: root
+
+- name: create cronjob to backup every day
+  cron:
+    name: "proxmox backup"
+    minute: "{{ raidcheck_crontab_minute }}"
+    hour: "{{ raidcheck_crontab_hour }}"
+    job: "{{ raidcheck_script_dest }}"
