@@ -28,33 +28,35 @@ logDrvState=$(/usr/sbin/megacli -LDInfo -L0 -a0 | grep 'State' | awk '{print $3}
 
 # on fail function
 fail () {
+    echo "$(date +"%F") Error, check /tmp/raidfail.log" >> $logDest
 
-    echo "Raid check" > $logDest
-    echo "$(date +"%d.%m.%Y_%H:%M")" >> $logDest
-    echo "" >> $logDest
-    echo "Virtual drive state: $logDrvState" >> $logDest
-    echo "" >> $logDest
-    echo "Drive ID: $physDrive0Id" >> $logDest
-    echo "Meida Error: $physDrive0Media" >> $logDest
-    echo "Other Error: $physDrive0Other" >> $logDest
+    echo "Raid check" > /tmp/raidfail.log
+    echo "$(date +"%d.%m.%Y_%H:%M")" >> /tmp/raidfail.log
+    echo "" >> /tmp/raidfail.log
+    echo "Virtual drive state: $logDrvState" >> /tmp/raidfail.log
 
-    echo "" >> $logDest
-    echo "Drive ID: $physDrive1Id" >> $logDest
-    echo "Meida Error: $physDrive1Media" >> $logDest
-    echo "Other Error: $physDrive1Other" >> $logDest
+    echo "" >> /tmp/raidfail.log
+    echo "Drive ID: $physDrive0Id" >> /tmp/raidfail.log
+    echo "Meida Error: $physDrive0Media" >> /tmp/raidfail.log
+    echo "Other Error: $physDrive0Other" >> /tmp/raidfail.log
 
-    echo "" >> $logDest
-    echo "Drive ID: $physDrive2Id" >> $logDest
-    echo "Meida Error: $physDrive2Media" >> $logDest
-    echo "Other Error: $physDrive2Other" >> $logDest
+    echo "" >> /tmp/raidfail.log
+    echo "Drive ID: $physDrive1Id" >> /tmp/raidfail.log
+    echo "Meida Error: $physDrive1Media" >> /tmp/raidfail.log
+    echo "Other Error: $physDrive1Other" >> /tmp/raidfail.log
 
-    echo "" >> $logDest
-    echo "Drive ID: $physDrive3Id" >> $logDest
-    echo "Meida Error: $physDrive3Media" >> $logDest
-    echo "Other Error: $physDrive3Other" >> $logDest
+    echo "" >> /tmp/raidfail.log
+    echo "Drive ID: $physDrive2Id" >> /tmp/raidfail.log
+    echo "Meida Error: $physDrive2Media" >> /tmp/raidfail.log
+    echo "Other Error: $physDrive2Other" >> /tmp/raidfail.log
+
+    echo "" >> /tmp/raidfail.log
+    echo "Drive ID: $physDrive3Id" >> /tmp/raidfail.log
+    echo "Meida Error: $physDrive3Media" >> /tmp/raidfail.log
+    echo "Other Error: $physDrive3Other" >> /tmp/raidfail.log
 
 
-    mail -s "$HOSTNAME drive warning" $recipient < $logDest
+    mail -s "$HOSTNAME drive warning" $recipient < /tmp/raidfail.log
 }
 
 
